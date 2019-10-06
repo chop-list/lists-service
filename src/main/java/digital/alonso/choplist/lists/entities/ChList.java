@@ -1,22 +1,32 @@
 package digital.alonso.choplist.lists.entities;
 
 import lombok.Data;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
+import javax.persistence.Basic;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import java.time.LocalDateTime;
 
 @Data
 @Entity
 public class ChList {
 
-    @Id
+    @Id @Basic
     public Long id;
 
+    @Basic
     private String name;
 
+    @Basic
     private String description;
 
-//    private LocalDateTime created;
+    @Basic @UpdateTimestamp
+    private LocalDateTime last_updated;
+
+    @Basic @CreationTimestamp
+    private LocalDateTime created;
 
     @Override
     public String toString() {
