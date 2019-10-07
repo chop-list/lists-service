@@ -2,7 +2,6 @@ package digital.alonso.choplist.lists.repositories;
 
 import digital.alonso.choplist.lists.entities.ChList;
 
-import java.math.BigDecimal;
 import java.util.List;
 
 public interface ChListRepository {
@@ -13,9 +12,9 @@ public interface ChListRepository {
 
     int getNumberOfChLists();
 
-    Long createChList(String name);
+    Long createChList(ChList chList);
 
     int deleteChList(Long id);
 
-    void updateChList(ChList chlist);
+    ChList updateChList(ChList chlist);
 }

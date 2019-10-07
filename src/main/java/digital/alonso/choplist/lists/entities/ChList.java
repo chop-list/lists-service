@@ -4,9 +4,7 @@ import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
-import javax.persistence.Basic;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Data
@@ -14,6 +12,7 @@ import java.time.LocalDateTime;
 public class ChList {
 
     @Id @Basic
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
     public Long id;
 
     @Basic
@@ -27,6 +26,16 @@ public class ChList {
 
     @Basic @CreationTimestamp
     private LocalDateTime created;
+
+    public ChList() {
+
+    }
+
+    public ChList(String name, String description) {
+        super();
+        this.name = name;
+        this.description = description;
+    }
 
     @Override
     public String toString() {

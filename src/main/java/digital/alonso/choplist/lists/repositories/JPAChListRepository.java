@@ -2,12 +2,13 @@ package digital.alonso.choplist.lists.repositories;
 
 import digital.alonso.choplist.lists.entities.ChList;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.List;
 
-@Repository
+@Repository @Transactional
 public class JPAChListRepository implements ChListRepository {
 
     @PersistenceContext
@@ -21,17 +22,19 @@ public class JPAChListRepository implements ChListRepository {
 
     @Override
     public ChList getChList(Long id) {
-        return null;
+        return entityManager.find(ChList.class, id);
     }
 
     @Override
     public int getNumberOfChLists() {
-        return 0;
+        Long result = (Long) entityManager.createQuery("select count(a.id) from ChList a").getSingleResult();
+        return result.intValue();
     }
 
     @Override
-    public Long createChList(String name) {
-        return null;
+    public Long createChList(ChList chList) {
+        entityManager.persist(chList);
+        return chList.getId();
     }
 
     @Override
@@ -40,7 +43,8 @@ public class JPAChListRepository implements ChListRepository {
     }
 
     @Override
-    public void updateChList(ChList chlist) {
-
+    public ChList updateChList(ChList chList) {
+        entityManager.merge(chList);
+        return chList;
     }
 }
