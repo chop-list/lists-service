@@ -5,6 +5,8 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 
 @Data
@@ -16,6 +18,8 @@ public class ChList {
     public Long id;
 
     @Basic
+    @NotNull(message="Name is a mandatory field.")
+    @NotEmpty(message = "Name is a mandatory field.")
     private String name;
 
     @Basic
