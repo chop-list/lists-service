@@ -69,6 +69,10 @@
 			<artifactId>hibernate-entitymanager</artifactId>
 			<version>5.4.4.Final</version>
 		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-security</artifactId>
+		</dependency>
 	</dependencies>
 
 	<build>
